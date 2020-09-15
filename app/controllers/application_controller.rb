@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
+    LoginMailer.send_when_login(current_user).deliver
     user_path(current_user.id)
   end
 
